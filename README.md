@@ -1,4 +1,4 @@
-# flutter_cubit
+# flutter_travel Application
 
 A new Flutter project.
 
