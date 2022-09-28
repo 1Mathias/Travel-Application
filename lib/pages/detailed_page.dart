@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_cubit/cubit/app_cubits.dart';
 import 'package:flutter_cubit/misc/colors.dart';
 import 'package:flutter_cubit/widgets/app_buttons.dart';
 import 'package:flutter_cubit/widgets/app_large_text.dart';
 import 'package:flutter_cubit/widgets/app_text.dart';
+import 'package:flutter_cubit/widgets/responsive_button.dart';
 
 class DetailPage extends StatefulWidget {
   const DetailPage({Key? key}) : super(key: key);
@@ -42,8 +45,10 @@ class _DetailPageState extends State<DetailPage> {
               child: Row(
                 children: [
                   IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.menu),
+                    onPressed: () {
+                      BlocProvider.of<AppCubits>(context).goHome();
+                    },
+                    icon: Icon(Icons.back),
                     color: Colors.white,
                   )
                 ],
@@ -150,15 +155,40 @@ class _DetailPageState extends State<DetailPage> {
                         );
                       }),
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: 10),
                     AppLargeText(
                         text: "Description",
                         color: Colors.black.withOpacity(0.8),
-                        size: 20)
+                        size: 20),
+                    SizedBox(height: 10),
+                    AppText(
+                        text:
+                            "Simen Mountain is located in Gondar Ethiopia.It is located near to the Bahir Dar.",
+                        color: AppColors.mainTextColor),
                   ],
                 ),
               ),
-            )
+            ),
+            Positioned(
+                bottom: 20,
+                left: 20,
+                right: 20,
+                child: Row(
+                  children: [
+                    AppButtons(
+                      color: AppColors.textColor1,
+                      backgroundColor: Colors.white,
+                      size: 60,
+                      borderColor: AppColors.textColor2,
+                      isIcon: true,
+                      icon: Icons.favorite_border,
+                    ),
+                    SizedBox(width: 20),
+                    ResponsiveButton(
+                      isResponsive: true,
+                    )
+                  ],
+                ))
           ],
         ),
       ),
